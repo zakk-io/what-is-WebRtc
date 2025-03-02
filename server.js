@@ -1,31 +1,39 @@
 // server.js (Node.js with Express and Socket.io)
 const express = require('express');
+const app = express()
 const http = require('http');
-const { Server } = require('socket.io');
+const path = require("path");
 
-const app = express();
-const server = http.createServer(app);
-const io = new Server(server);
+const {Server} = require("socket.io")
+const server = http.createServer(app)
 
-app.use(express.static(__dirname + '/public'));
+const io = new Server(server)
 
-io.on('connection', socket => {
-    
-    socket.on('offer', data => {
-        socket.broadcast.emit('offer', data);
-    });
 
-    socket.on('answer', data => {
-        socket.broadcast.emit('answer', data);
-    });
+io.on("connection", async (socket) =>{
 
-    socket.on('candidate', data => {
-        socket.broadcast.emit('candidate', data);
-    });
+    socket.on("icecandidate",(icecandidate) => {
+        socket.broadcast.emit("broadcast_icecandidate",icecandidate)
+    })
 
-    socket.on('disconnect', () => {
-        console.log('User disconnected:', socket.id);
-    });
-});
+    socket.on("offer",(offer) => {
+        socket.broadcast.emit("broadcast_offer",offer)
+    })
 
-server.listen(3000, () => console.log('Server running on port 3000'));
+
+    socket.on("answer",(answer) => {
+        socket.broadcast.emit("broadcast_answer",answer)
+    })
+
+    console.log("socket.io is fired");
+})
+
+
+app.use(express.static(path.join(__dirname,"public")))
+
+app.get("/",(res,req) => {
+    res.sendFile(path.join(__dirname,"public","index.html"))
+})
+
+
+server.listen(2000, () => console.log('Server running on port 3000'));
