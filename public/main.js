@@ -42,13 +42,15 @@ async function init() {
 
     createOffer();
     
-    // Track event to receive remote streams
-    peerConnection.ontrack = event => {
-      remoteVideo.srcObject = event.streams[0];
-    };
+
     
     // Setup Socket.IO event listeners
     setupSignalingChannelListeners();
+
+
+    peerConnection.ontrack = event => {
+      remoteVideo.srcObject = event.streams[0];
+    };
     
     
     
