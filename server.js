@@ -7,7 +7,12 @@ const path = require("path");
 const {Server} = require("socket.io")
 const server = http.createServer(app)
 
-const io = new Server(server)
+const io = new Server(server,{
+    cors: {
+        origin: "https://what-is-webrtc.onrender.com", // or "*" to allow all origins
+        methods: ["GET", "POST", "OPTIONS", "PUT", "DELETE", "PATCH"]
+      }
+})
 
 
 io.on("connection", async (socket) =>{
