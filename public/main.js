@@ -19,7 +19,7 @@ const remoteVideo = document.getElementById('video-player-2');
 
 // Initialize the application
 async function init() {
-  socket = io();
+  socket = io("https://what-is-webrtc.onrender.com");
   
   try {
     // Get local media stream
