@@ -5,7 +5,7 @@ const configuration = {
   ]
 };
 
-socket = io("");
+socket = io("https://what-is-webrtc.onrender.com");
 let RTCPeersConnections = {}
 
 
