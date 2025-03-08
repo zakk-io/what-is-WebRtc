@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>WebRTC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="/main.css">
+  <!-- Include Font Awesome for control icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <input type="hidden" name="call_id" id="call_id">
+  <div id="videos">
+    <!-- Local video container -->
+    <div class="video-container" id="local-video-container">
+      <video class="video-player" id="local-video-player" autoplay playsinline muted></video>
+      <div class="controls">
+        <button class="control-btn audio-toggle"><i class="fa fa-microphone"></i></button>
+        <button class="control-btn video-toggle"><i class="fa fa-video"></i></button>
+      </div>
+    </div>
+    <!-- Remote videos will be appended here dynamically with the same structure -->
+  </div>
+  
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/main.js"></script>
+</body>
+</html>
