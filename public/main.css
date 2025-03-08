@@ -41,33 +41,5 @@ body, html {
     object-fit: cover;
   }
   
-  /* Control overlay at the bottom center */
-  .controls {
-    position: absolute;
-    bottom: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 10px;
-  }
-  
-  /* Styling for each control button */
-  .control-btn {
-    background: rgba(0, 0, 0, 0.6);
-    border: none;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    outline: none;
-    transition: background 0.2s ease;
-  }
-  
-  .control-btn:hover {
-    background: rgba(0, 0, 0, 0.8);
-  }
+
   
