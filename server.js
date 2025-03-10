@@ -7,7 +7,12 @@ const {v4 : uuid4} = require("uuid")
 const {Server} = require("socket.io")
 const server = http.createServer(app)
 
-const io = new Server(server)
+const io = new Server(server , {
+    cors: {
+        origin: "https://what-is-webrtc.onrender.com",  
+        methods: ["GET", "POST", "OPTIONS", "PUT", "DELETE", "PATCH"]
+    }
+})
 
 
 io.on("connection", async (socket) =>{

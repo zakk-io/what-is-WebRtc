@@ -1,6 +1,6 @@
 
 
-const socket = io("")
+const socket = io("https://what-is-webrtc.onrender.com")
 
 const stream_id = document.getElementById("stream_id").value
 
