@@ -59,21 +59,15 @@
           <!-- Chat header -->
           <div class="border-b border-gray-700 px-4 py-2">
             <h5 class="mb-0">Live Chat</h5>
+            <div class="flex items-center space-x-2">
+              <i class="fas fa-eye text-green-400"></i>
+              <span id="viewer-count" class="text-white text-sm"></span>
+            </div>
           </div>
           <!-- Chat messages -->
-          <div class="chat-box px-4 py-2 flex-1 overflow-y-auto space-y-3">
+          <div class="chat-box px-4 py-2 flex-1 overflow-y-auto space-y-3" id="chat-box">
             <!-- Sample chat messages -->
-            <div class="flex items-start">
-              <div class="bg-gray-700 p-2 rounded-md">
-                <p class="text-sm">User1: Hello everyone!</p>
-              </div>
-            </div>
-            <div class="flex items-start">
-              <div class="bg-gray-700 p-2 rounded-md">
-                <p class="text-sm">User2: Great stream!</p>
-              </div>
-            </div>
-            <!-- More messages will be appended here -->
+
           </div>
           <!-- Chat input -->
           <div class="px-4 py-3 border-t border-gray-700">

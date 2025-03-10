@@ -1,3 +1,5 @@
+
+
 const socket = io("")
 
 const stream_id = document.getElementById("stream_id").value
@@ -22,13 +24,13 @@ if(Is_streamer === "true"){
     .then((stream) => {
         stream_object = stream
         stream_video.srcObject = stream
-        socket.emit("create-stream",stream_id)
+        //socket.emit("create-stream",stream_id)
     })
 }
 
-if(Is_streamer != "true"){
+
+
 socket.emit("join-stream",stream_id)
-}
 
 
 if(Is_streamer === "true"){
@@ -37,6 +39,10 @@ if(Is_streamer === "true"){
     })
 }
 
+
+socket.on("viewers-count",viwersCount => {
+    document.getElementById("viewer-count").textContent = viwersCount
+})
 
 socket.on("recive-offer",data => {
     const pc = new RTCPeerConnection(configuration)
@@ -101,5 +107,36 @@ const CreatePeer = (socket_id,offerer) => {
     }
 
 }
+
+
+
+//chating
+const chatForm = document.getElementById("chat-form")
+const chatInput = document.getElementById("chat-input")
+const chatBox = document.getElementById("chat-box")
+
+
+chatForm.addEventListener("submit", (e) => {
+    e.preventDefault()
+    socket.emit("chat-message",{"to" : stream_id , "message" : chatInput.value})
+    chatInput.value = ""
+})
+
+
+socket.on("brodcast-message", data => {
+    const avatarUrl = `https://robohash.org/${encodeURIComponent(data.from)}?set=set1&size=80x80`;
+
+    
+    const m = `<div class="flex items-start space-x-2">
+                 <img src="${avatarUrl}" alt="User Avatar" class="w-10 h-10 rounded-full">
+                 <div class="bg-gray-700 p-2 rounded-md">
+                   <p class="text-sm">${data.message}</p>
+                 </div>
+               </div>`;
+
+    chatBox.innerHTML += m
+});
+
+
 
 

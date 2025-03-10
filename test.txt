@@ -1,0 +1,5 @@
+<div class="flex items-start">
+<div class="bg-gray-700 p-2 rounded-md">
+  <p class="text-sm">User1: Hello everyone!</p>
+</div>
+</div>

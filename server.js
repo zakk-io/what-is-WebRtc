@@ -33,9 +33,17 @@ io.on("connection", async (socket) =>{
         socket.join(stream_id)
     })
 
-    socket.on("join-stream",stream_id => {
+    socket.on("join-stream",async (stream_id) => {
         socket.join(stream_id)
         socket.to(stream_id).emit("new-socket",socket.id)
+
+        const viewersCount = await io.in(stream_id).fetchSockets()        
+        io.to(stream_id).emit("viewers-count",viewersCount.length)
+    })
+
+    //chating
+    socket.on("chat-message",data => {
+        io.to(data.to).emit("brodcast-message",{"message" : data.message , "from" : socket.id})
     })
 
 })
