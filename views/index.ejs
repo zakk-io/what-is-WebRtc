@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Choose Your Option</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    /* Simple hover effect for the option cards */
+    .option-card {
+      transition: transform 0.2s;
+    }
+    .option-card:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="#">WebRTC Options</a>
+    </div>
+  </nav>
+  
+  <!-- Main Content -->
+  <div class="container py-5">
+    <div class="text-center mb-4">
+      <h1 class="text-3xl font-bold">Select Your Option</h1>
+      <p class="text-gray-600">Choose to start a call or start streaming</p>
+    </div>
+    <div class="row justify-content-center g-4">
+      <!-- Start Call Option (Meeting Icon) -->
+      <div class="col-12 col-md-5">
+        <a href="/call" class="text-decoration-none">
+          <div class="option-card card shadow-sm">
+            <div class="card-body text-center">
+              <i class="fas fa-user-friends fa-4x text-blue-500 mb-3"></i>
+              <h2 class="card-title h4">Start meeting Call</h2>
+              <p class="card-text text-gray-600">Connect with others through a meeting call.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <!-- Start Stream Option -->
+      <div class="col-12 col-md-5">
+        <a href="/stream" class="text-decoration-none">
+          <div class="option-card card shadow-sm">
+            <div class="card-body text-center">
+              <i class="fas fa-video fa-4x text-green-500 mb-3"></i>
+              <h2 class="card-title h4">Start live Stream</h2>
+              <p class="card-text text-gray-600">Broadcast your video and audio to many viewers.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Live Streaming</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    /* Increase height for both areas using viewport height */
+    .streaming-area {
+      min-height: 80vh; /* Streaming area takes 80% of viewport height */
+    }
+    .chat-container {
+      min-height: 80vh; /* Chat area takes 80% of viewport height */
+    }
+    /* Adjust chat messages container height (subtract header and input area) */
+    .chat-box {
+      max-height: calc(80vh - 100px);
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white">
+  <!-- Header -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Live Stream</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container mt-4">
+<!-- Copy Link Section -->
+<div class="text-center my-3">
+  <label for="stream-link" class="text-lg font-semibold">Share Stream Link</label>
+  <div class="d-flex justify-content-center align-items-center mt-2">
+    <input type="text" id="stream-link" class="form-control w-50 bg-gray-700 text-white text-center" readonly>
+    <button onclick="copyLink()" class="btn btn-secondary ms-2">
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+</div>
+
+    <div class="row">
+      <!-- Streaming Video Area -->
+      <input type="hidden" name="stream_id" id="stream_id" value="<%=stream_id%>">
+      <div class="col-12 col-md-8 mb-4">
+        <div class="streaming-area relative bg-black rounded-lg overflow-hidden shadow-lg">
+          <!-- Main streaming video -->
+          <video id="stream-video" class="w-full h-full object-cover" autoplay playsinline muted controls>
+          </video>
+        </div>
+      </div>
+
+      <!-- Chat / Viewer Area -->
+      <div class="col-12 col-md-4">
+        <div class="chat-container bg-gray-800 rounded-lg shadow-lg flex flex-col">
+          <!-- Chat header -->
+          <div class="border-b border-gray-700 px-4 py-2">
+            <h5 class="mb-0">Live Chat</h5>
+            <div class="flex items-center space-x-2">
+              <i class="fas fa-eye text-green-400"></i>
+              <span id="viewer-count" class="text-white text-sm"></span>
+            </div>
+          </div>
+          <!-- Chat messages -->
+          <div class="chat-box px-4 py-2 flex-1 overflow-y-auto space-y-3" id="chat-box">
+            <!-- Sample chat messages -->
+
+          </div>
+          <!-- Chat input -->
+          <div class="px-4 py-3 border-t border-gray-700">
+            <form id="chat-form" class="flex">
+              <input
+                type="text"
+                id="chat-input"
+                class="flex-1 bg-gray-700 text-white rounded-l-lg px-3 py-2 focus:outline-none"
+                placeholder="Type your message..."
+              />
+              <button type="submit" class="bg-blue-600 hover:bg-blue-500 text-white rounded-r-lg px-4 py-2">
+                Send
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/stream.js"></script>
+
+  <script>
+    let currentUrl = window.location.href;
+    document.getElementById("stream-link").value = window.location.href.split('?')[0];
+  
+    function copyLink() {
+      let linkInput = document.getElementById("stream-link");
+      linkInput.select();
+      linkInput.setSelectionRange(0, 99999); // For mobile devices
+      navigator.clipboard.writeText(linkInput.value).then(() => {
+        alert("Link copied to clipboard!");
+      });
+    }
+  </script>
+</body>
+</html>

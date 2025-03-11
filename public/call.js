@@ -54,7 +54,6 @@ socket.on("recive-answer",async data => {
 socket.on("recive-icecandidate",async data => {
   const pc = RTCPeersConnections[data.from]
   await pc.addIceCandidate(data.candidate)
-
 })
 
 
