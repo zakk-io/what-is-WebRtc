@@ -35,13 +35,17 @@
 
   <!-- Main Content -->
   <div class="container mt-4">
-    <!-- Copy Link Section -->
+<!-- Copy Link Section -->
 <div class="text-center my-3">
   <label for="stream-link" class="text-lg font-semibold">Share Stream Link</label>
   <div class="d-flex justify-content-center align-items-center mt-2">
     <input type="text" id="stream-link" class="form-control w-50 bg-gray-700 text-white text-center" readonly>
+    <button onclick="copyLink()" class="btn btn-secondary ms-2">
+      <i class="fas fa-copy"></i>
+    </button>
   </div>
 </div>
+
     <div class="row">
       <!-- Streaming Video Area -->
       <input type="hidden" name="stream_id" id="stream_id" value="<%=stream_id%>">
@@ -96,6 +100,15 @@
   <script>
     let currentUrl = window.location.href;
     document.getElementById("stream-link").value = window.location.href.split('?')[0];
+  
+    function copyLink() {
+      let linkInput = document.getElementById("stream-link");
+      linkInput.select();
+      linkInput.setSelectionRange(0, 99999); // For mobile devices
+      navigator.clipboard.writeText(linkInput.value).then(() => {
+        alert("Link copied to clipboard!");
+      });
+    }
   </script>
 </body>
 </html>
